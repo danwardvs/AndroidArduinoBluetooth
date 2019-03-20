@@ -11,29 +11,28 @@
 #include <SoftwareSerial.h>// import the serial library
 
 SoftwareSerial Genotronex(10, 11); // RX, TX
-int BluetoothData; // the data given from Computer
+char BluetoothData; // the data given from Computer
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600); // open the serial port at 9600 bps:
   Genotronex.begin(9600);
-  Genotronex.println("Please enter ");
+  Genotronex.println("Arduino thingy is online");
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   if (Genotronex.available()){
-    BluetoothData=Genotronex.parseInt();
+    BluetoothData=Genotronex.read();
     if(true){
-       int squared = BluetoothData*BluetoothData;
 
-      Serial.println(squared);
-      Genotronex.print(squared);
+      Serial.print(BluetoothData);
+      Genotronex.print(BluetoothData);
 
     }
    
    }
   
 
-  delay(100);// prepare for next data ...
+  delay(50);// prepare for next data ...
 }
